@@ -9,7 +9,8 @@ import 'package:untitled/Provider/favorite_with_provider.dart';
 import 'package:untitled/Screens/themechanger_screen.dart';
 import 'package:untitled/Provider/themechanger_with_provider.dart';
 import 'package:untitled/Screens/sateless_widget_with_valuenotifer.dart';
-
+import 'package:untitled/Screens/login_screen.dart';
+import 'package:untitled/Provider/auth_with_provider.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(create: (_) => FavoriteProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+
       ],
       child: Builder(builder: (context) {
         final themeProvider = Provider.of<ThemeProvider>(context);
@@ -40,9 +43,9 @@ class MyApp extends StatelessWidget {
             themeMode: themeProvider.theme,
             title: 'Flutter with provider ',
             theme: ThemeData(
-              primarySwatch: Colors.indigo,
+              primarySwatch: Colors.deepOrange,
             ),
-            home:  NotiferListerner());
+            home:  LoginScreen());
       }),
     );
   }
