@@ -12,8 +12,8 @@ class ThemeChangerScreen extends StatefulWidget {
 class _ThemeChangerScreenState extends State<ThemeChangerScreen> {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context,);
     print('builder');
-    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Theme Screen'),
@@ -23,13 +23,21 @@ class _ThemeChangerScreenState extends State<ThemeChangerScreen> {
           children: [
             RadioListTile<ThemeMode>(
                 title: Text("light mode"),
-                value:ThemeMode.light , groupValue:themeProvider.theme , onChanged: themeProvider.themeset),
+                value: ThemeMode.light,
+                groupValue: themeProvider.theme,
+                onChanged:(theme){
+                  themeProvider.themeset(theme);
+                }),
             RadioListTile<ThemeMode>(
                 title: Text("Dark mode"),
-                value:ThemeMode.dark , groupValue:themeProvider.theme , onChanged: themeProvider.themeset),
+                value: ThemeMode.dark,
+                groupValue: themeProvider.theme,
+                onChanged: themeProvider.themeset),
             RadioListTile<ThemeMode>(
                 title: Text("system mode"),
-                value:ThemeMode.system , groupValue:themeProvider.theme , onChanged: themeProvider.themeset),
+                value: ThemeMode.system,
+                groupValue: themeProvider.theme,
+                onChanged: themeProvider.themeset),
           ],
         ),
       ),
